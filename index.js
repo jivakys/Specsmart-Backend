@@ -11,6 +11,11 @@ require("dotenv").config();
 app.use("/users", userRoute);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
+app.get("/", (req, res) => {
+  res.send({
+    Message: "Welcome To Specsmart.",
+  });
+});
 
 app.listen(process.env.port, async () => {
   try {
