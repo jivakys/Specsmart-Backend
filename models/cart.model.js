@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema = mongoose.Schema(
+const cartSchema = mongoose.Schema(
   {
     name: String,
     imageTsrc: String,
@@ -13,14 +13,14 @@ const productSchema = mongoose.Schema(
     productType: String,
     productId: String,
     quantity: Number,
+    userId: String,
   },
   {
     versionKey: false,
   }
 );
-
-const ProductModel = mongoose.model("product", productSchema);
+const CartModel = mongoose.model("cart", cartSchema);
 
 module.exports = {
-  ProductModel,
+  CartModel,
 };
