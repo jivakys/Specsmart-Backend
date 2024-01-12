@@ -16,8 +16,6 @@ productRouter.get("/", async (req, res) => {
 
 productRouter.get("/model", async (req, res) => {
   const filters = {};
-  // Apply filters based on query parameters
-
   if (req.query.shape) {
     filters.shape = { $regex: req.query.shape, $options: "i" };
   }
@@ -25,9 +23,6 @@ productRouter.get("/model", async (req, res) => {
   if (req.query.colors) {
     filters.colors = { $regex: req.query.colors, $options: "i" };
   }
-  // if (req.query.price) {
-  //   filters.price = { $regex: req.query.price, $options: "i" };
-  // }
   const data = await ProductModel.find(filters).sort({
     price: req.query.price === "asc" ? 1 : -1,
   });
@@ -40,8 +35,7 @@ productRouter.post("/add", async (req, res) => {
     const newProduct = new ProductModel(payload);
     await newProduct.save();
     res.status(200).send({ message: "New Products successfully Added" });
-  } catch (err) {
-    console.log("err=", err);
+  } catch (err) {console.log("err=", err);
     res.status(400).send({ msg: err });
   }
 });
@@ -59,11 +53,9 @@ productRouter.get("/sorting", async (req, res) => {
     } else if (sort === "hightolow") {
       query.sort({ price: -1 });
     }
-
     const data = await query.exec();
     res.json(data);
-  } catch (err) {
-    console.error(err);
+  } catch (err) {console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 });
