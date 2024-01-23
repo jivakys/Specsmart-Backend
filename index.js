@@ -4,25 +4,39 @@ const cors = require("cors");
 const { userRoute } = require("./routes/user.route");
 const { productRouter } = require("./routes/product.route");
 const { cartRouter } = require("./routes/cart.route");
+
 const app = express();
+const allowedOrigins = ["https://specsmart.vercel.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(express.json());
-app.use(cors());
-require("dotenv").config();
+
 app.use("/users", userRoute);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
+
 app.get("/", (req, res) => {
   res.send({
     Message: "Welcome To Specsmart.",
   });
 });
 
-app.listen(process.env.port, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   try {
     await connection;
     console.log("Database is connected");
   } catch (error) {
     console.log(error.message);
   }
-  console.log(`Server Running at ${process.env.port}`);
+  console.log(`Server Running at ${process.env.PORT || 3000}`);
 });

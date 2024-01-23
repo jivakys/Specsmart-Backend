@@ -18,7 +18,6 @@ userRoute.post("/register", userPresent, async (req, res) => {
         password: hash,
       });
       await data.save();
-      // swal("User Register Successfully!");
       res.status(200).send({ msg: "User Register Successfully" });
     });
   } catch (err) {
