@@ -10,7 +10,6 @@ cartRouter.post("/addCard", async (req, res) => {
     await new_cart.save();
     res.status(201).send("add new cartItems");
   } catch (err) {
-    // console.log(err);
     res.status(500).send({ msg: "Something went wrong" });
   }
 });
