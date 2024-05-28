@@ -8,6 +8,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 require("dotenv").config();
+
+app.use("/", (req, res) => {
+  res.send("app is running");
+});
 app.use("/users", userRoute);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
