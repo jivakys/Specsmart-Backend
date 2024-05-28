@@ -18,10 +18,10 @@ userRoute.post("/register", userPresent, async (req, res) => {
         password: hash,
       });
       await data.save();
+      swal("User Register Successfully!");
       res.status(200).send({ msg: "User Register Successfully" });
     });
   } catch (err) {
-    console.log("register error", err);
     res.status(400).send({ msg: err.message });
   }
 });
