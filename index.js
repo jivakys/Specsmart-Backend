@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(cors());
 require("dotenv").config();
 
-app.use("/", (req, res) => {
-  res.send("app is running");
+app.get("/", (req, res) => {
+  res.send("App is running");
 });
 app.use("/users", userRoute);
 app.use("/products", productRouter);
