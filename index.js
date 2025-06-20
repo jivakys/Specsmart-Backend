@@ -10,7 +10,7 @@ app.use(cors());
 require("dotenv").config();
 
 app.get("/", (req, res) => {
-  res.send("App is running");
+  res.send("Specsmart app is running");
 });
 app.use("/users", userRoute);
 app.use("/products", productRouter);
