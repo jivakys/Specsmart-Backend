@@ -12,6 +12,7 @@ require("dotenv").config();
 app.get("/", (req, res) => {
   res.send("Specsmart app is running");
 });
+
 app.use("/users", userRoute);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
